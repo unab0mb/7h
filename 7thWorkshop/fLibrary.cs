@@ -892,7 +892,9 @@ They will be automatically turned off.";
                     Sys.Ping(pi.ModID);
                 }
 
-                SanityCheckSettings();
+                if(SanityCheckSettings()){
+                    SaveProfile();
+                }
 
             } else {
                 DoDeactivate(item);
