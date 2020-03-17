@@ -251,7 +251,7 @@ namespace _7thWrapperLib {
         //private Overrides _overrides;
         private RuntimeProfile _profile;
 
-        LocalHook _hCreateFileW, _hCreateFileA, _hReadFile, _hFindFirstFile, _hFindFirstFileA, _hSetFilePointer, _hCloseHandle,
+        LocalHook _hCreateFileW, _hReadFile, _hFindFirstFile, _hSetFilePointer, _hCloseHandle,
             _hGetFileType, _hCreateProcessW, _hGetFileInformationByHandle, _hDuplicateHandle,
             _hGetFileSize, _hGetFileSizeEx, _hSetFilePointerEx, _hWriteFile;
 
@@ -655,10 +655,10 @@ namespace _7thWrapperLib {
                     }
                 }
 
-                if (System.IO.Path.GetFileName(lpFileName).Equals("FF7_OpenGL.cfg", StringComparison.InvariantCultureIgnoreCase) && !String.IsNullOrWhiteSpace(_profile.OpenGLConfig))
+                if (System.IO.Path.GetFileName(lpFileName).Equals("7H_GameDriver.cfg", StringComparison.InvariantCultureIgnoreCase) && !String.IsNullOrWhiteSpace(_profile.OpenGLConfig))
                 {
                     _streamFiles[handle] = new VStreamFile(System.Text.Encoding.UTF8.GetBytes(_profile.OpenGLConfig));
-                    System.Diagnostics.Debug.WriteLine("Overriding FF7_OpenGL.cfg with replacement data");
+                    System.Diagnostics.Debug.WriteLine("Overriding 7H_GameDriver.cfg with replacement data");
                 }
 
                 
