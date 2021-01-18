@@ -113,12 +113,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\7thWrapperLib\7thWrapperLib.csproj">
-      <Project>{f80db232-4102-4249-8b31-2ddd5c7fa404}</Project>
-      <Name>7thWrapperLib</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Workshop.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Workshop.Designer.cs</LastGenOutput>
@@ -126,6 +120,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Loader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\7thWrapperLib\7thWrapperLib.csproj">
+      <Project>{f80db232-4102-4249-8b31-2ddd5c7fa404}</Project>
+      <Name>7thWrapperLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="SharpCompress">
+      <Version>0.24.0</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
