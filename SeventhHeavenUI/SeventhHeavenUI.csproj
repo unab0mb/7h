@@ -1109,10 +1109,6 @@
       <Project>{f80db232-4102-4249-8b31-2ddd5c7fa404}</Project>
       <Name>7thWrapperLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SharpCompress\src\SharpCompress\SharpCompress.csproj">
-      <Project>{8c6b794e-f8b2-45b2-a8d2-7ac73e967d80}</Project>
-      <Name>SharpCompress</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TurBoLog\TurBoLog.csproj">
       <Project>{03eede27-0abb-4cda-a7f2-f746e2083202}</Project>
       <Name>TurBoLog</Name>
