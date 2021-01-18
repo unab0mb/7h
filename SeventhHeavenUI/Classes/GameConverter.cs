@@ -966,34 +966,6 @@ namespace SeventhHeaven.Classes
             }
         }
 
-        internal void CopyMissingShaders()
-        {
-            string pathToShaders = Path.Combine(InstallPath, "shaders");
-
-            // create missing directory
-            if (!Directory.Exists(pathToShaders))
-            {
-                SendMessage($"\t{ResourceHelper.Get(StringKey.MissingShadersFolderCreatingDirectory)}");
-                Directory.CreateDirectory(pathToShaders);
-            }
-
-            // copy missing files from shaders folder to ff7 install
-            string sourcePath = Path.Combine(Sys.PathToGameDriverFolder, "shaders");
-            string[] sourceFiles = Directory.GetFiles(sourcePath, "*", SearchOption.AllDirectories);
-
-            foreach (string shaderFile in sourceFiles)
-            {
-                string targetPath = shaderFile.Replace(sourcePath, pathToShaders);
-
-                if (!File.Exists(targetPath))
-                {
-                    SendMessage($"\t{string.Format(ResourceHelper.Get(StringKey.MissingShadersFilesCopyingFrom), targetPath, sourcePath)}");
-                    Directory.CreateDirectory(Path.GetDirectoryName(targetPath)); // ensure any missing sub folders are created
-                    File.Copy(shaderFile, targetPath, true);
-                }
-            }
-        }
-
         internal bool IsExeDifferent()
         {
             string ff7ExePath = Path.Combine(Sys.PathToPatchedExeFolder, "ff7.exe");
