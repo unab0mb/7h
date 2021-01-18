@@ -157,6 +157,8 @@ namespace Iros._7th.Workshop {
 
             defaultSettings.ExtraFolders.Add("direct");
             defaultSettings.ExtraFolders.Add("music");
+            defaultSettings.ExtraFolders.Add("sfx");
+            defaultSettings.ExtraFolders.Add("voice");
 
             defaultSettings.UserColumnSettings = ColumnSettings.GetDefaultSettings();
 
