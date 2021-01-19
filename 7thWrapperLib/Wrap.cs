@@ -612,7 +612,7 @@ namespace _7thWrapperLib {
                 {
                     if (lpFileName.StartsWith(path, StringComparison.InvariantCultureIgnoreCase))
                     {
-                        //DebugLogger.WriteLine("Trying to override file {0} found in path {1}", lpFileName, path);
+                        //DebugLogger.WriteLine($"Trying to override file {lpFileName} found in path {path}");
                         OverrideFile mapped = LGPWrapper.MapFile(lpFileName.Substring(path.Length), _profile);
                         if (mapped != null)
                             if (mapped.Archive == null)
