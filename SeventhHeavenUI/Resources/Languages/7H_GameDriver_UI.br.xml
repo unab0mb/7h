@@ -320,11 +320,11 @@
 
   <Setting xsi:type="Checkbox">
     <Group>Avançado</Group>
-    <Name>Transparência Extravagante</Name>
-    <Description>Ativa a mistura alfa para texturas sem um efeito de mistura existente. Obrigatório para alguns mods.</Description>
-    <DefaultValue>fancy_transparency = true</DefaultValue>
-    <TrueSetting>fancy_transparency = true</TrueSetting>
-    <FalseSetting>fancy_transparency = false</FalseSetting>
+    <Name>Animated Textures</Name>
+    <Description>Enable support for high quality animated textures. NOTE: This feature requires a MODERN CPU. If you notice slowdows, please DISABLE this flag.</Description>
+    <DefaultValue>enable_animated_textures = false</DefaultValue>
+    <TrueSetting>enable_animated_textures = true</TrueSetting>
+    <FalseSetting>enable_animated_textures = false</FalseSetting>
   </Setting>
 
   <Setting xsi:type="Checkbox">
