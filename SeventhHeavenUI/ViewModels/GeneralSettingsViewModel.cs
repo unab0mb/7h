@@ -494,7 +494,7 @@ namespace SeventhHeaven.ViewModels
             Sys.Settings.Subscriptions = GetUpdatedSubscriptions();
             Sys.Settings.ExtraFolders = ExtraFolderList.Distinct().ToList();
 
-            // ensure 'direct' and 'music' folders are always in ExtraFolders list
+            // ensure 'direct', 'music', 'sfx' and 'voice' folders are always in ExtraFolders list
             if (!Sys.Settings.ExtraFolders.Contains("direct", StringComparer.InvariantCultureIgnoreCase))
             {
                 Sys.Settings.ExtraFolders.Add("direct");
@@ -503,6 +503,16 @@ namespace SeventhHeaven.ViewModels
             if (!Sys.Settings.ExtraFolders.Contains("music", StringComparer.InvariantCultureIgnoreCase))
             {
                 Sys.Settings.ExtraFolders.Add("music");
+            }
+
+            if (!Sys.Settings.ExtraFolders.Contains("sfx", StringComparer.InvariantCultureIgnoreCase))
+            {
+                Sys.Settings.ExtraFolders.Add("sfx");
+            }
+
+            if (!Sys.Settings.ExtraFolders.Contains("voice", StringComparer.InvariantCultureIgnoreCase))
+            {
+                Sys.Settings.ExtraFolders.Add("voice");
             }
 
             Sys.Settings.FF7Exe = FF7ExePathInput;

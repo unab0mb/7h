@@ -929,7 +929,9 @@ namespace SeventhHeaven.Classes
                 Path.Combine(InstallPath, "direct", "world"),
                 Path.Combine(InstallPath, "music"),
                 Path.Combine(InstallPath, "music", "vgmstream"),
+                Path.Combine(InstallPath, "sfx"),
                 Path.Combine(InstallPath, "shaders"),
+                Path.Combine(InstallPath, "voice"),
             };
 
             foreach (string dir in requiredFolders)
