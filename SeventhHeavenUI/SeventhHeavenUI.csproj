@@ -134,6 +134,7 @@
     <Compile Include="Classes\ControlMapper.cs" />
     <Compile Include="Classes\DateTimeComparer.cs" />
     <Compile Include="Classes\DS4ControllerService.cs" />
+    <Compile Include="Classes\FFNxDriverUpdater.cs" />
     <Compile Include="Classes\FileDialogHelper.cs" />
     <Compile Include="Classes\GameController.cs" />
     <Compile Include="Classes\GameConverter.cs" />
