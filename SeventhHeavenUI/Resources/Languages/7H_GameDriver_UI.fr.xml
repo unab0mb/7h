@@ -172,15 +172,6 @@
 
   <Setting xsi:type="Checkbox">
     <Group>Graphismes</Group>
-    <Name>Filtrage Linéaire</Name>
-    <Description>Peut améliorer la qualité des textures en basses résolutions mais floute les détails. Non recommandé lors de l'utilisation en mode haute résolution. Si vous voyez des artefacts cyan ou violet sur les champs, désactivez cette option.</Description>
-    <DefaultValue>linear_filter = false</DefaultValue>
-    <TrueSetting>linear_filter = true</TrueSetting>
-    <FalseSetting>linear_filter = false</FalseSetting>
-  </Setting>
-
-  <Setting xsi:type="Checkbox">
-    <Group>Graphismes</Group>
     <Name>Synchronisation Verticale</Name>
     <Description>Synchronisez la fréquence d'images du jeu avec le taux de rafraîchissement de l'écran. Cela peut avoir un impact négatif sur les performances ou casser les mods 60 fps. Activez cette option si vous constatez un déchirement de l'écran. *Limite la Vitesse de Triche!*</Description>
     <DefaultValue>enable_vsync = false</DefaultValue>
@@ -226,7 +217,7 @@
     <Group>Fonctions de triche</Group>
     <Name>Facteur d'avance rapide</Name>
     <Description>Permet d'augmenter ou diminuer la vitesse d'avance rapide.{0}Utilisation: CTRL+Haut/Bas ou L2+R2+Haut/Bas pour changer la vitesse, CTRL+Gauche/Droite ou L2+R2+Gauche/Droite pour activer/désactiver.</Description>
-    <DefaultValue>speedhack_step = 1.0</DefaultValue>
+    <DefaultValue>speedhack_step = 0.5</DefaultValue>
     <Option>
       <Text>0.5</Text>
       <Settings>speedhack_step = 0.5</Settings>
@@ -245,30 +236,30 @@
     <Group>Fonctions de triche</Group>
     <Name>Vitesse Maximum</Name>
     <Description>La vitesse maximale d'avance rapide avant de revenir à la vitesse normale.</Description>
-    <DefaultValue>speedhack_max = 7.0</DefaultValue>
+    <DefaultValue>speedhack_max = 8.0</DefaultValue>
     <Option>
-      <Text>3x</Text>
-      <Settings>speedhack_max = 3.0</Settings>
+      <Text>2x</Text>
+      <Settings>speedhack_max = 2.0</Settings>
     </Option>
     <Option>
-      <Text>5x</Text>
-      <Settings>speedhack_max = 5.0</Settings>
+      <Text>4x</Text>
+      <Settings>speedhack_max = 4.0</Settings>
     </Option>
     <Option>
-      <Text>7x</Text>
-      <Settings>speedhack_max = 7.0</Settings>
+      <Text>6x</Text>
+      <Settings>speedhack_max = 6.0</Settings>
     </Option>
     <Option>
-      <Text>9x</Text>
-      <Settings>speedhack_max = 9.0</Settings>
+      <Text>8x</Text>
+      <Settings>speedhack_max = 8.0</Settings>
     </Option>
     <Option>
-      <Text>11x</Text>
-      <Settings>speedhack_max = 11.0</Settings>
+      <Text>10x</Text>
+      <Settings>speedhack_max = 10.0</Settings>
     </Option>
     <Option>
-      <Text>13x</Text>
-      <Settings>speedhack_max = 13.0</Settings>
+      <Text>12x</Text>
+      <Settings>speedhack_max = 12.0</Settings>
     </Option>
   </Setting>
 
@@ -307,14 +298,18 @@
     <Group>Avancé</Group>
     <Name>Rendu des cinématiques</Name>
     <Description>Utiliser FFMPEG pour la lecture des cinématiques. Ou utilisez le moteur de rendu original, uniquement pour les vidéos d'origines.</Description>
-    <DefaultValue>enable_ffmpeg_videos = true</DefaultValue>
+    <DefaultValue>enable_ffmpeg_videos = 1</DefaultValue>
     <Option>
-      <Text>FFMPEG (Recommandé)</Text>
-      <Settings>enable_ffmpeg_videos = true</Settings>
+      <Text>Autodetect (Recommended)</Text>
+      <Settings>enable_ffmpeg_videos = -1</Settings>
+    </Option>
+    <Option>
+      <Text>FFMPEG</Text>
+      <Settings>enable_ffmpeg_videos = 1</Settings>
     </Option>
     <Option>
       <Text>Rendu original</Text>
-      <Settings>enable_ffmpeg_videos = false</Settings>
+      <Settings>enable_ffmpeg_videos = 0</Settings>
     </Option>
   </Setting>
 

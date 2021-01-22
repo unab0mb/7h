@@ -172,15 +172,6 @@
 
   <Setting xsi:type="Checkbox">
     <Group>Gráficos</Group>
-    <Name>Filtragem Linear</Name>
-    <Description>Talvez melhore a qualidade de texturas de baixa resolução. Não recomendado quando utilizando mods de alta resolução. Se artefatos roxos ou cianos aparecerem no campo, desative esta opção.</Description>
-    <DefaultValue>linear_filter = false</DefaultValue>
-    <TrueSetting>linear_filter = true</TrueSetting>
-    <FalseSetting>linear_filter = false</FalseSetting>
-  </Setting>
-
-  <Setting xsi:type="Checkbox">
-    <Group>Gráficos</Group>
     <Name>Sincronização Vertical</Name>
     <Description>Sincroniza a taxa de quadros do jogo com a taxa de atualização do monitor. Pode afetar negativamente a performance ou quebrar mods de 60 fps. Ative se estiver acontecendo Screen Tearing. *Limita a Trapaça de Velocidade!*</Description>
     <DefaultValue>enable_vsync = false</DefaultValue>
@@ -226,7 +217,7 @@
     <Group>Trapaça</Group>
     <Name>Incremento de Velocidade</Name>
     <Description>Quantidade para aumentar ou diminuir a velocidade a cada ativação.{0}Uso: CTRL+Cima/Baixo ou L2+R2+Cima/Baixo para alterar a velocidade, CTRL+Esquerda/Direita ou L2+R2+Esquerda/Direita para ligar/desligar.</Description>
-    <DefaultValue>speedhack_step = 1.0</DefaultValue>
+    <DefaultValue>speedhack_step = 0.5</DefaultValue>
     <Option>
       <Text>0.5</Text>
       <Settings>speedhack_step = 0.5</Settings>
@@ -245,30 +236,30 @@
     <Group>Trapaça</Group>
     <Name>Velocidade máxima</Name>
     <Description>A velocidade máxima a alçancar antes de voltar à velocidade normal.</Description>
-    <DefaultValue>speedhack_max = 7.0</DefaultValue>
+    <DefaultValue>speedhack_max = 8.0</DefaultValue>
     <Option>
-      <Text>3x</Text>
-      <Settings>speedhack_max = 3.0</Settings>
+      <Text>2x</Text>
+      <Settings>speedhack_max = 2.0</Settings>
     </Option>
     <Option>
-      <Text>5x</Text>
-      <Settings>speedhack_max = 5.0</Settings>
+      <Text>4x</Text>
+      <Settings>speedhack_max = 4.0</Settings>
     </Option>
     <Option>
-      <Text>7x</Text>
-      <Settings>speedhack_max = 7.0</Settings>
+      <Text>6x</Text>
+      <Settings>speedhack_max = 6.0</Settings>
     </Option>
     <Option>
-      <Text>9x</Text>
-      <Settings>speedhack_max = 9.0</Settings>
+      <Text>8x</Text>
+      <Settings>speedhack_max = 8.0</Settings>
     </Option>
     <Option>
-      <Text>11x</Text>
-      <Settings>speedhack_max = 11.0</Settings>
+      <Text>10x</Text>
+      <Settings>speedhack_max = 10.0</Settings>
     </Option>
     <Option>
-      <Text>13x</Text>
-      <Settings>speedhack_max = 13.0</Settings>
+      <Text>12x</Text>
+      <Settings>speedhack_max = 12.0</Settings>
     </Option>
   </Setting>
 
@@ -307,14 +298,18 @@
     <Group>Avançado</Group>
     <Name>Opção de Filme</Name>
     <Description>Usar FFMPEG para rodar filmes do jogo (FMVs). Ou, use o renderizador original, que talvez tenha suporte para um menor número de codecs.</Description>
-    <DefaultValue>enable_ffmpeg_videos = true</DefaultValue>
+    <DefaultValue>enable_ffmpeg_videos = 1</DefaultValue>
     <Option>
-      <Text>FFMPEG (Recomendado)</Text>
-      <Settings>enable_ffmpeg_videos = true</Settings>
+      <Text>Autodetect (Recommended)</Text>
+      <Settings>enable_ffmpeg_videos = -1</Settings>
+    </Option>
+    <Option>
+      <Text>FFMPEG</Text>
+      <Settings>enable_ffmpeg_videos = 1</Settings>
     </Option>
     <Option>
       <Text>Renderizador Original</Text>
-      <Settings>enable_ffmpeg_videos = false</Settings>
+      <Settings>enable_ffmpeg_videos = 0</Settings>
     </Option>
   </Setting>
 

@@ -134,6 +134,9 @@
     <PackageReference Include="SharpCompress">
       <Version>0.27.1</Version>
     </PackageReference>
+    <PackageReference Include="Tomlyn">
+      <Version>0.1.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

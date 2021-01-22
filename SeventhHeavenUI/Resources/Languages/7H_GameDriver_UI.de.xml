@@ -226,7 +226,7 @@
     <Group>Cheats</Group>
     <Name>Geschwindigkeitssteigerung</Name>
     <Description>Höhe der Spielgeschwindigkeitssteigerung pro Tastendruck. Verwendung: STRG+Auf/Ab oder L2+R2+Auf/Ab zum Ändern der Geschwindigkeit STRG+Links/Rechts oder L2+R2+Links/Rechts zum Ein- und Ausschalten.</Description>
-    <DefaultValue>speedhack_step = 1.0</DefaultValue>
+    <DefaultValue>speedhack_step = 0.5</DefaultValue>
     <Option>
       <Text>0.5</Text>
       <Settings>speedhack_step = 0.5</Settings>
@@ -245,30 +245,30 @@
     <Group>Cheats</Group>
     <Name>Maximale Geschwindigkeit</Name>
     <Description>Die maximale Geschwindigkeit, die eingestellt werden kann, bevor zur normalen Geschwindigkeit zurückgekehrt wird.</Description>
-    <DefaultValue>speedhack_max = 7.0</DefaultValue>
+    <DefaultValue>speedhack_max = 8.0</DefaultValue>
     <Option>
-      <Text>3x</Text>
-      <Settings>speedhack_max = 3.0</Settings>
+      <Text>2x</Text>
+      <Settings>speedhack_max = 2.0</Settings>
     </Option>
     <Option>
-      <Text>5x</Text>
-      <Settings>speedhack_max = 5.0</Settings>
+      <Text>4x</Text>
+      <Settings>speedhack_max = 4.0</Settings>
     </Option>
     <Option>
-      <Text>7x</Text>
-      <Settings>speedhack_max = 7.0</Settings>
+      <Text>6x</Text>
+      <Settings>speedhack_max = 6.0</Settings>
     </Option>
     <Option>
-      <Text>9x</Text>
-      <Settings>speedhack_max = 9.0</Settings>
+      <Text>8x</Text>
+      <Settings>speedhack_max = 8.0</Settings>
     </Option>
     <Option>
-      <Text>11x</Text>
-      <Settings>speedhack_max = 11.0</Settings>
+      <Text>10x</Text>
+      <Settings>speedhack_max = 10.0</Settings>
     </Option>
     <Option>
-      <Text>13x</Text>
-      <Settings>speedhack_max = 13.0</Settings>
+      <Text>12x</Text>
+      <Settings>speedhack_max = 12.0</Settings>
     </Option>
   </Setting>
 
