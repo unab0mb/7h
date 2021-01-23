@@ -1812,7 +1812,7 @@ namespace SeventhHeavenUI.ViewModels
             }
             else
             {
-                MessageDialogWindow messageDialog = new MessageDialogWindow(ResourceHelper.Get(StringKey.MissingPath), $"FFNx.toml {ResourceHelper.Get(StringKey.FileNotFound)}", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageDialogWindow messageDialog = new MessageDialogWindow(ResourceHelper.Get(StringKey.MissingPath), $"FFNx.toml {ResourceHelper.Get(StringKey.FileNotFound)}\n\nPlease run the game at least once and try again.", MessageBoxButton.OK, MessageBoxImage.Warning);
                 messageDialog.ShowDialog();
             }
         }
