@@ -433,7 +433,7 @@ namespace SeventhHeaven.Windows
 
         private void btnFFNxCheckForUpdate_Click(object sender, RoutedEventArgs e)
         {
-            updater.CheckForUpdates();
+            updater.CheckForUpdates(Sys.Settings.FFNxUpdateChannel);
         }
     }
 }

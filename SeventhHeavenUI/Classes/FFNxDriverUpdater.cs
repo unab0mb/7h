@@ -22,9 +22,9 @@ namespace SeventhHeaven.Classes
             return _currentDriverVersion != null ? _currentDriverVersion.FileVersion : "0.0.0.0";
         }
 
-        private string GetUpdateChannel()
+        private string GetUpdateChannel(FFNxUpdateChannelOptions channel)
         {
-            switch(Sys.Settings.FFNxUpdateChannel)
+            switch(channel)
             {
                 case FFNxUpdateChannelOptions.Stable:
                     return "https://api.github.com/repos/julianxhokaxhiu/FFNx/releases/latest";
@@ -53,7 +53,7 @@ namespace SeventhHeaven.Classes
             return String.Empty;
         }
 
-        public void CheckForUpdates()
+        public void CheckForUpdates(FFNxUpdateChannelOptions channel)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace SeventhHeaven.Classes
 
             DownloadItem download = new DownloadItem()
             {
-                Links = new List<string>() { LocationUtil.FormatHttpUrl(GetUpdateChannel()) },
+                Links = new List<string>() { LocationUtil.FormatHttpUrl(GetUpdateChannel(channel)) },
                 SaveFilePath = Path.Combine(Sys.SysFolder, "temp", "ffnxupdateinfo.json"),
                 Category = DownloadCategory.AppUpdate,
                 ItemName = $"Checking for FFNx Updates using channel {Sys.Settings.FFNxUpdateChannel.ToString()}..."
@@ -96,7 +96,7 @@ namespace SeventhHeaven.Classes
                                 if (
                                     MessageDialogWindow.Show(
                                         $"New FFNx Update driver found!\n\nCurrent Version: {curVersion.ToString()}\nNew Version: {newVersion.ToString()}\n\nWould you like to update?",
-                                        "FFNx Driver Update found!",
+                                        "Update found!",
                                         System.Windows.MessageBoxButton.YesNo,
                                         System.Windows.MessageBoxImage.Question
                                     ).Result == System.Windows.MessageBoxResult.Yes)
@@ -109,7 +109,7 @@ namespace SeventhHeaven.Classes
                                 if (
                                     MessageDialogWindow.Show(
                                         $"Your current FFNx driver versions seems newer to the one currently available.\n\nCurrent Version: {curVersion.ToString()}\nNew Version: {newVersion.ToString()}\n\nWould you like to install it anyway?",
-                                        "FFNx Driver Update found!",
+                                        "Update found!",
                                         System.Windows.MessageBoxButton.YesNo,
                                         System.Windows.MessageBoxImage.Question
                                     ).Result == System.Windows.MessageBoxResult.Yes)
@@ -119,14 +119,56 @@ namespace SeventhHeaven.Classes
                     }
                     catch (Exception ex)
                     {
-                        MessageDialogWindow.Show("Something went wrong while checking for FFNx updates. Please try again later.", "Could not fetch for updates", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
-                        Sys.Message(new WMessage() { Text = $"Could not parse the FFNx release json at {GetUpdateChannel()}", LoggedException = e.Error });
+                        MessageDialogWindow.Show("Something went wrong while checking for FFNx updates. Please try again later.", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        Sys.Message(new WMessage() { Text = $"Could not parse the FFNx release json at {GetUpdateChannel(channel)}", LoggedException = e.Error });
                     }
                 }
                 else
                 {
-                    MessageDialogWindow.Show("Something went wrong while checking for FFNx updates. Please try again later.", "Could not fetch for updates", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
-                    Sys.Message(new WMessage() { Text = $"Could not fetch for FFNx updates at {GetUpdateChannel()}", LoggedException = e.Error });
+                    MessageDialogWindow.Show("Something went wrong while checking for FFNx updates. Please try again later.", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    Sys.Message(new WMessage() { Text = $"Could not fetch for FFNx updates at {GetUpdateChannel(channel)}", LoggedException = e.Error });
+                }
+            });
+
+            Sys.Downloads.AddToDownloadQueue(download);
+        }
+
+        public void DownloadAndExtractLatestVersion(FFNxUpdateChannelOptions channel)
+        {
+            DownloadItem download = new DownloadItem()
+            {
+                Links = new List<string>() { LocationUtil.FormatHttpUrl(GetUpdateChannel(channel)) },
+                SaveFilePath = Path.Combine(Sys.SysFolder, "temp", "ffnxupdateinfo.json"),
+                Category = DownloadCategory.AppUpdate,
+                ItemName = $"Fetching the latest FFNx version using channel {Sys.Settings.FFNxUpdateChannel.ToString()}..."
+            };
+
+            download.IProc = new Install.InstallProcedureCallback(e =>
+            {
+                bool success = (e.Error == null && e.Cancelled == false);
+
+                if (success)
+                {
+                    try
+                    {
+                        StreamReader file = File.OpenText(download.SaveFilePath);
+                        dynamic release = JValue.Parse(file.ReadToEnd());
+                        file.Close();
+                        File.Delete(download.SaveFilePath);
+
+                        Version newVersion = new Version(GetUpdateVersion(release.name.Value));
+                        DownloadAndExtract(GetUpdateReleaseUrl(release.assets), newVersion.ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageDialogWindow.Show("Something went wrong while checking for FFNx updates. Please try again later.", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        Sys.Message(new WMessage() { Text = $"Could not parse the FFNx release json at {GetUpdateChannel(channel)}", LoggedException = e.Error });
+                    }
+                }
+                else
+                {
+                    MessageDialogWindow.Show("Something went wrong while checking for FFNx updates. Please try again later.", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    Sys.Message(new WMessage() { Text = $"Could not fetch for FFNx updates at {GetUpdateChannel(channel)}", LoggedException = e.Error });
                 }
             });
 
@@ -163,14 +205,14 @@ namespace SeventhHeaven.Classes
                             }
                         }
 
-                        MessageDialogWindow.Show($"Successfully updated FFNx to version {version}.\n\nRemember to configure again your driver as settings have been resetted.\n\nEnjoy!", "Update successful", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                        MessageDialogWindow.Show($"Successfully updated FFNx to version {version}.\n\nRemember to configure again your driver as settings have been resetted.\n\nEnjoy!", "Success", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
                         Sys.Message(new WMessage() { Text = $"Successfully updated FFNx to version {version}" });
 
                         File.Delete(download.SaveFilePath);
                     }
                     else
                     {
-                        MessageDialogWindow.Show("Something went wrong while downloading the FFNx update. Please try again later.", "Could not download the update", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        MessageDialogWindow.Show("Something went wrong while downloading the FFNx update. Please try again later.", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                         Sys.Message(new WMessage() { Text = $"Could not download the FFNx update {url}", LoggedException = e.Error });
                     }
                 });
@@ -179,7 +221,7 @@ namespace SeventhHeaven.Classes
             }
             else
             {
-                MessageDialogWindow.Show("Something went wrong while downloading the FFNx update. Please try again later.", "Could not download the update", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                MessageDialogWindow.Show("Something went wrong while downloading the FFNx update. Please try again later.", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             }
         }
     }
