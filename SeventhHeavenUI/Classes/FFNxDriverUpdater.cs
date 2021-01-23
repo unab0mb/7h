@@ -2,6 +2,7 @@
 using Iros._7th.Workshop;
 using Newtonsoft.Json.Linq;
 using SeventhHeaven.Windows;
+using SeventhHeavenUI;
 using SharpCompress.Archives;
 using SharpCompress.Archives.Zip;
 using SharpCompress.Common;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Windows;
 
 namespace SeventhHeaven.Classes
 {
@@ -51,6 +53,26 @@ namespace SeventhHeaven.Classes
             }
 
             return String.Empty;
+        }
+
+        private void SwitchToDownloadPanel()
+        {
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                MainWindow window = App.Current.MainWindow as MainWindow;
+
+                window.tabCtrlMain.SelectedIndex = 1;
+            });
+        }
+
+        private void SwitchToModPanel()
+        {
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                MainWindow window = App.Current.MainWindow as MainWindow;
+
+                window.tabCtrlMain.SelectedIndex = 0;
+            });
         }
 
         public void CheckForUpdates(FFNxUpdateChannelOptions channel)
@@ -179,6 +201,8 @@ namespace SeventhHeaven.Classes
         {
             if (url != String.Empty)
             {
+                SwitchToDownloadPanel();
+
                 DownloadItem download = new DownloadItem()
                 {
                     Links = new List<string>() { LocationUtil.FormatHttpUrl(url) },
@@ -204,6 +228,8 @@ namespace SeventhHeaven.Classes
                                 });
                             }
                         }
+
+                        SwitchToModPanel();
 
                         MessageDialogWindow.Show($"Successfully updated FFNx to version {version}.\n\nRemember to configure again your driver as settings have been resetted.\n\nEnjoy!", "Success", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
                         Sys.Message(new WMessage() { Text = $"Successfully updated FFNx to version {version}" });
